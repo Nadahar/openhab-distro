@@ -14,3 +14,29 @@ Image DemoImage
 Color MagicColor { channel="magic:color-light:magicColor:color" }
 Switch MagicOnOff { channel="magic:onoff-light:magicOnOff:switch" }
 Dimmer MagicDimmer { channel="magic:dimmable-light:magicDimmer:brightness" }
+
+
+Number:Temperature AmbientTemperature "Ambient Temperature" {channel="milllan:panel-heater:e7c586766b:ambient-temperature", unit="°C", stateDescription=" "[ pattern="%.1f %unit%" ] }
+Number:Temperature RawAmbientTemperature "Raw Ambient Temperature" <temperature> ["Measurement", "Temperature"] {channel="milllan:panel-heater:e7c586766b:raw-ambient-temperature", unit="°C", stateDescription=" "[ pattern="%.1f %unit%" ] }
+Number:Power CurrentPower "Current Power" <energy> ["Measurement", "Power"] {channel="milllan:panel-heater:e7c586766b:current-power", stateDescription=" "[ pattern="%.0f %unit%" ] }
+Number:Dimensionless ControlSignal "Current Control Signal" <heating> ["Status"] {channel="milllan:panel-heater:e7c586766b:control-signal", unit="%", stateDescription=" "[ pattern="%.0f %%" ] }
+String LockStatus "Lock Status" <lock> ["Status"] {channel="milllan:panel-heater:e7c586766b:lock-status"}
+String OpenWindowStatus "Open Window Status" <window> ["Status"] {channel="milllan:panel-heater:e7c586766b:open-window-status"}
+Switch OpenWindowActive "Open Window Active" <window> ["Status"] {channel="milllan:panel-heater:e7c586766b:open-window-active"}
+Switch OpenWindowEnabled "Open Window Function" <window> ["Switch"] {channel="milllan:panel-heater:e7c586766b:open-window-enabled"}
+Number:Temperature SetTemperature "Set Temperature" <temperature> ["Status", "Temperature"] {channel="milllan:panel-heater:e7c586766b:set-temperature", stateDescription=" "[ pattern="%.1f %unit%" ] }
+Switch ConnectedToCloud "Connected to Cloud" ["Status"] {channel="milllan:panel-heater:e7c586766b:connected-to-cloud"}
+String OperationMode "Operation Mode" ["Control"] {channel="milllan:panel-heater:e7c586766b:operation-mode"}
+Number:Temperature TemperatureCalibrationOffset "Temperature Calibration Offset" <temperature> ["Setpoint", "Temperature"] {channel="milllan:panel-heater:e7c586766b:temperature-calibration-offset", unit="°C", stateDescription=" "[ pattern="%.1f %unit%" ] }
+Switch CommercialLock "Commercial Lock Status" <lock> ["Switch"] {channel="milllan:panel-heater:e7c586766b:commercial-lock"}
+Switch ChildLock "Child Lock Status" <lock> ["Switch"] {channel="milllan:panel-heater:e7c586766b:child-lock"}
+String DisplayUnit "Display Unit" ["Control"] {channel="milllan:panel-heater:e7c586766b:display-unit"}
+Number:Temperature NormalSetTemperature "Normal Set Temperature" <temperature> ["Setpoint", "Temperature"] {channel="milllan:panel-heater:e7c586766b:normal-set-temperature", unit="°C", stateDescription=" "[ pattern="%.1f %unit%" ] }
+Number:Temperature ComfortSetTemperature "Comfort Set Temperature" <temperature> ["Setpoint", "Temperature"] {channel="milllan:panel-heater:e7c586766b:comfort-set-temperature", unit="°C", stateDescription=" "[ pattern="%.1f %unit%" ] }
+Number:Temperature SleepSetTemperature "Sleep Set Temperature" <temperature> ["Setpoint", "Temperature"] {channel="milllan:panel-heater:e7c586766b:sleep-set-temperature", unit="°C", stateDescription=" "[ pattern="%.1f %unit%" ] }
+Number:Temperature AwaySetTemperature "Away Set Temperature" <temperature> ["Setpoint", "Temperature"] {channel="milllan:panel-heater:e7c586766b:away-set-temperature", unit="°C", stateDescription=" "[ pattern="%.1f %unit%" ] }
+Number:Temperature IndependentModeSetTemperature "Independent Mode Set Temperature" <temperature> ["Setpoint", "Temperature"] {channel="milllan:panel-heater:e7c586766b:independent-mode-set-temperature", unit="°C", stateDescription=" "[ pattern="%.1f %unit%" ] }
+Dimmer LimitedHeatingPower "Max Heating Power" <heating> ["Control"] {channel="milllan:panel-heater:e7c586766b:limited-heating-power", unit="%", stateDescription=" "[ pattern="%.0f %%" ] }
+String ControllerType "Controller Type" ["Control"] {channel="milllan:panel-heater:e7c586766b:controller-type"}
+String PredictiveHeatingType "Predictive Heating Type" ["Control"] {channel="milllan:panel-heater:e7c586766b:predictive-heating-type"}
+Number:Dimensionless OilHeaterPower "Oil Heating Power" <heating> ["Control"] {channel="milllan:panel-heater:e7c586766b:oil-heater-power", unit="%", stateDescription=" "[ pattern="%.0f %%" ] }

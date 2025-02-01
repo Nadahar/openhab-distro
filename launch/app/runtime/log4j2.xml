@@ -52,9 +52,18 @@
 		<Logger level="${env:logger.openhab.level:-INFO}" name="org.openhab"/>
 
 		<!-- Uncomment this logger and update the name to enable debug logging for a binding -->
-		<!--
-		<Logger level="DEBUG" name="org.openhab.binding.YOURBINDINGNAME"/>
-		-->
+		<Logger level="INFO" name="org.openhab.binding.milllan"/>
+		<Logger level="TRACE" name="org.openhab.core.addon"/>
+		<Logger level="TRACE" name="org.openhab.core.addon.marketplace"/>
+		<Logger level="INFO" name="org.openhab.core.automation"/>
+		<Logger level="INFO" name="org.openhab.core.model.core"/>
+		<Logger level="INFO" name="org.openhab.automation.jrubyscripting"/>
+		<Logger level="INFO" name="org.openhab.automation.jythonscripting"/>
+		<Logger level="ERROR" name="org.jruby"/>
+		<Logger level="INFO" name="org.openhab.core.io.rest"/>
+		<Logger level="INFO" name="org.openhab.core.transform"/>
+		<Logger level="INFO" name="org.openhab.core.storage"/>
+		<Logger level="INFO" name="org.openhab.core.model.yaml"/>
 
 		<!-- You can also override the variables of the loggers below to enable logging without -->
 		<!-- modifying this file. E.g. set 'logger.misc1.name' to 'org.openhab.binding.YOURBINDINGNAME' -->
