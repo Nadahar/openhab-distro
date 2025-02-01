@@ -1,3 +1,9 @@
 magic:color-light:magicColor
 magic:onoff-light:magicOnOff
 magic:dimmable-light:magicDimmer
+
+Thing milllan:panel-heater:e7c586766b "Mill Stue test" @ "Stue" [
+    hostname="10.72.64.212",
+    apiKey="magne",
+    refreshInterval=20
+] {}
