@@ -53,6 +53,7 @@
 
 		<!-- Uncomment this logger and update the name to enable debug logging for a binding -->
 		<Logger level="INFO" name="org.openhab.binding.milllan"/>
+        <Logger level="DEBUG" name="org.openhab.binding.unifi"/>
 		<Logger level="TRACE" name="org.openhab.core.addon"/>
 		<Logger level="TRACE" name="org.openhab.core.addon.marketplace"/>
 		<Logger level="INFO" name="org.openhab.core.automation"/>

@@ -89,7 +89,8 @@ feature.openhab-model-runtime-all: \
 	bnd.identity;id='org.openhab.binding.unifiprotect',\
 	bnd.identity;id='org.openhab.binding.shelly',\
 	bnd.identity;id='org.openhab.core.model.yaml',\
-	bnd.identity;id='org.openhab.automation.jythonscripting'
+	bnd.identity;id='org.openhab.binding.unifi',\
+	bnd.identity;id='org.openhab.binding.milllan'
 
 -runfw: org.eclipse.osgi
 
@@ -131,6 +132,7 @@ feature.openhab-model-runtime-all: \
 
 -runvm: \
 	-Djdk.util.zip.disableZip64ExtraFieldValidation=true,\
+	-Djava.io.tmpdir=C:\\Program Files\\EclipseOpenHAB\\temp,\
 	--add-opens=java.base/java.io=ALL-UNNAMED,\
 	--add-opens=java.base/java.lang=ALL-UNNAMED,\
 	--add-opens=java.base/java.lang.reflect=ALL-UNNAMED,\
@@ -347,5 +349,9 @@ feature.openhab-model-runtime-all: \
 	org.eclipse.californium.scandium;version='[4.0.0,4.0.1)',\
 	org.openhab.binding.shelly;version='[5.0.0,5.0.1)',\
 	org.openhab.core.model.yaml;version='[5.0.0,5.0.1)',\
-	org.openhab.automation.jythonscripting;version='[5.0.0,5.0.1)'
+	org.openhab.binding.unifi;version='[5.0.0,5.0.1)',\
+	groovy;version='[4.0.26,4.0.27)',\
+	groovy-jsr223;version='[4.0.26,4.0.27)',\
+	org.jruby.jruby;version='[10.0.0,10.0.1)',\
+	org.openhab.binding.milllan;version='[1.0.2,1.0.3)'
 -resolve: manual
