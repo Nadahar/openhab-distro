@@ -2,7 +2,8 @@
 
 	<Appenders>
 		<Console name="STDOUT">
-			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%-5.5p] [%-36.36c] - %m%n"/>
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%-5.5p] (%-20.20thread) [%-36.36c] - %m%n"/>
+			<MarkerFilter marker="Cast API Heartbeat" onMatch="DENY" onMismatch="NEUTRAL"/>
 		</Console>
 
 		<!-- Rolling file appender -->
@@ -52,12 +53,23 @@
 		<Logger level="${env:logger.openhab.level:-INFO}" name="org.openhab"/>
 
 		<!-- Uncomment this logger and update the name to enable debug logging for a binding -->
+		<Logger level="DEBUG" name="org.openhab.core.service.StartLevelService"/>
 		<Logger level="INFO" name="org.openhab.binding.milllan"/>
-        <Logger level="DEBUG" name="org.openhab.binding.unifi"/>
-		<Logger level="TRACE" name="org.openhab.core.addon"/>
-		<Logger level="TRACE" name="org.openhab.core.addon.marketplace"/>
+		<Logger level="INFO" name="org.openhab.binding.network"/>
+		<Logger level="INFO" name="org.openhab.binding.chromecast"/>
+		<Logger level="INFO" name="org.digitalmediaserver.cast"/>
+		<Logger level="INFO" name="org.openhab.core.addon"/>
+		<Logger level="INFO" name="org.openhab.core.addon.marketplace"/>
 		<Logger level="INFO" name="org.openhab.core.automation"/>
+		<Logger level="INFO" name="org.openhab.core.io.rest.core"/>
 		<Logger level="INFO" name="org.openhab.core.model.core"/>
+		<Logger level="INFO" name="org.openhab.core.model.script"/>
+		<Logger level="INFO" name="org.openhab.core.model.yaml"/>
+		<Logger level="DEBUG" name="org.openhab.core.config.discovery"/>
+		<Logger level="INFO" name="org.openhab.core.config.discovery.usbserial"/>
+		<Logger level="INFO" name="org.openhab.core.config.discovery.usbserial.windowsregistry"/>
+		<Logger level="TRACE" name="org.openhab.core.io.transport.upnp"/>
+		<Logger level="DEBUG" name="org.openhab.binding.upnpcontrol"/>
 		<Logger level="INFO" name="org.openhab.automation.jrubyscripting"/>
 		<Logger level="INFO" name="org.openhab.automation.jythonscripting"/>
 		<Logger level="ERROR" name="org.jruby"/>
@@ -65,6 +77,10 @@
 		<Logger level="INFO" name="org.openhab.core.transform"/>
 		<Logger level="INFO" name="org.openhab.core.storage"/>
 		<Logger level="INFO" name="org.openhab.core.model.yaml"/>
+		<Logger level="DEBUG" name="org.openhab.binding.zwave"/>
+		<Logger level="DEBUG" name="openhab.event.StartlevelEvent"/>
+		<Logger level="TRACE" name="org.openhab.io.thingtypes"/>
+		<Logger level="TRACE" name="org.openhab.core.io.websocket"/>
 
 		<!-- You can also override the variables of the loggers below to enable logging without -->
 		<!-- modifying this file. E.g. set 'logger.misc1.name' to 'org.openhab.binding.YOURBINDINGNAME' -->
@@ -90,7 +106,7 @@
 		<Logger level="ERROR" name="openhab.event.RuleStatusInfoEvent"/>
 		<Logger level="ERROR" name="openhab.event.RuleAddedEvent"/>
 		<Logger level="ERROR" name="openhab.event.RuleRemovedEvent"/>
-		<Logger level="ERROR" name="openhab.event.StartlevelEvent"/>
+		<!--Logger level="ERROR" name="openhab.event.StartlevelEvent"/-->
 		<Logger level="ERROR" name="openhab.event.AddonEvent"/>
 
 		<Logger additivity="false" level="INFO" name="openhab.event">
@@ -99,8 +115,8 @@
 			<AppenderRef ref="STDOUT"/>
 		</Logger>
 
-		<Logger level="ERROR" name="javax.jmdns"/>
-		<Logger level="ERROR" name="org.jupnp"/>
+		<Logger level="WARN" name="javax.jmdns"/>
+		<Logger level="WARN" name="org.jupnp"/>
 
 		<!-- Filters known issues of pax-web (issue link to be added here). -->
 		<!-- Can be removed once the issues are resolved in an upcoming version. -->
