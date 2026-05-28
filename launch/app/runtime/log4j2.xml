@@ -61,29 +61,30 @@
 		<Logger level="INFO" name="org.digitalmediaserver.cast"/>
 		<Logger level="INFO" name="org.openhab.core.addon"/>
 		<Logger level="INFO" name="org.openhab.core.addon.marketplace"/>
-		<Logger level="INFO" name="org.openhab.core.automation"/>
+		<Logger level="DEBUG" name="org.openhab.core.automation"/>
 		<Logger level="INFO" name="org.openhab.core.io.rest.core"/>
 		<Logger level="INFO" name="org.openhab.core.model.core"/>
-		<Logger level="INFO" name="org.openhab.core.model.script"/>
+		<Logger level="DEBUG" name="org.openhab.core.model.rule"/>
+		<Logger level="DEBUG" name="org.openhab.core.model.script"/>
 		<Logger level="DEBUG" name="org.openhab.core.model.yaml"/>
+		<Logger level="DEBUG" name="org.openhab.core.model"/>
 		<Logger level="DEBUG" name="org.openhab.core.config.discovery"/>
 		<Logger level="INFO" name="org.openhab.core.config.discovery.usbserial"/>
 		<Logger level="INFO" name="org.openhab.core.config.discovery.usbserial.windowsregistry"/>
-		<Logger level="TRACE" name="org.openhab.core.io.transport.upnp"/>
+		<Logger level="DEBUG" name="org.openhab.core.io.transport.upnp"/>
 		<Logger level="DEBUG" name="org.openhab.binding.upnpcontrol"/>
 		<Logger level="TRACE" name="org.openhab.binding.shelly"/>
 		<Logger level="INFO" name="org.openhab.automation.jrubyscripting"/>
 		<Logger level="INFO" name="org.openhab.automation.jythonscripting"/>
 		<Logger level="ERROR" name="org.jruby"/>
-		<Logger level="INFO" name="org.openhab.core.io.rest"/>
+		<Logger level="DEBUG" name="org.openhab.core.io.rest"/>
 		<Logger level="INFO" name="org.openhab.core.transform"/>
 		<Logger level="INFO" name="org.openhab.core.storage"/>
-		<Logger level="INFO" name="org.openhab.core.model.yaml"/>
 		<Logger level="DEBUG" name="org.openhab.binding.zwave"/>
 		<Logger level="DEBUG" name="openhab.event.StartlevelEvent"/>
-		<Logger level="TRACE" name="org.openhab.io.thingtypes"/>
-		<Logger level="TRACE" name="org.openhab.core.io.websocket"/>
-		<Logger level="TRACE" name="org.openhab.core.internal.service.WatchServiceImpl"/>		
+		<Logger level="DEBUG" name="org.openhab.io.thingtypes"/>
+		<Logger level="DEBUG" name="org.openhab.core.io.websocket"/>
+		<Logger level="DEBUG" name="org.openhab.core.internal.service"/>
 
 		<!-- You can also override the variables of the loggers below to enable logging without -->
 		<!-- modifying this file. E.g. set 'logger.misc1.name' to 'org.openhab.binding.YOURBINDINGNAME' -->
