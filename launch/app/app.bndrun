@@ -43,12 +43,21 @@ feature.openhab-model-runtime-all: \
 	bnd.identity;id='org.openhab.core.model.sitemap.runtime',\
 	bnd.identity;id='org.openhab.core.model.thing.runtime'
 
+feature.graalvm-core: bnd.identity;id='org.graalvm.polyglot.polyglot',bnd.identity;id='org.graalvm.regex.regex',bnd.identity;id='org.graalvm.sdk.collections',bnd.identity;id='org.graalvm.sdk.jniutils',bnd.identity;id='org.graalvm.sdk.nativeimage',bnd.identity;id='org.graalvm.sdk.word',bnd.identity;id='org.graalvm.shadowed.icu4j',bnd.identity;id='org.graalvm.shadowed.json',bnd.identity;id='org.graalvm.shadowed.xz',bnd.identity;id='org.graalvm.tools.chromeinspector-tool',bnd.identity;id='org.graalvm.tools.profiler-tool',bnd.identity;id='org.graalvm.truffle.truffle-api',bnd.identity;id='org.graalvm.truffle.truffle-compiler',bnd.identity;id='org.graalvm.truffle.truffle-runtime'
+
+feature.jsscripting: bnd.identity;id='org.openhab.automation.jsscripting',bnd.identity;id='org.graalvm.js.js-language',bnd.identity;id='org.graalvm.js.js-scriptengine'
+
+feature.pythonscripting: bnd.identity;id='org.openhab.automation.pythonscripting',bnd.identity;id='org.graalvm.python.python-language',bnd.identity;id='org.graalvm.python.python-resources',bnd.identity;id='org.graalvm.llvm.llvm-api',bnd.identity;id='org.graalvm.truffle.truffle-nfi',bnd.identity;id='org.graalvm.truffle.truffle-nfi-libffi'
+
 -runrequires: \
 	bnd.identity;id='org.eclipse.equinox.metatype',\
 	${feature.logging},\
 	${feature.debug},\
 	${feature.openhab-base},\
 	${feature.openhab-model-runtime-all},\
+	${feature.graalvm-core},\
+	${feature.jsscripting},\
+	${feature.pythonscripting},\
 	bnd.identity;id='org.openhab.core.addon.eclipse',\
 	bnd.identity;id='org.openhab.core.addon.marketplace',\
 	bnd.identity;id='org.openhab.core.automation',\
@@ -126,7 +135,7 @@ feature.openhab-model-runtime-all: \
 
 -runproperties: \
 	felix.cm.dir=${.}/runtime/userdata/config,\
-	org.osgi.framework.bootdelegation="sun.misc",\
+	org.osgi.framework.bootdelegation=*,\
 	org.osgi.service.http.port=8080,\
 	osgi.console=,\
 	osgi.console.enable.builtin=false,\
@@ -136,7 +145,9 @@ feature.openhab-model-runtime-all: \
 	openhab.runtime=${.}/runtime/runtime,\
 	openhab.conf=${.}/runtime/conf,\
 	openhab.userdata=${.}/runtime/userdata,\
-	openhab.logdir=${.}/runtime/userdata/logs
+	openhab.logdir=${.}/runtime/userdata/logs,\
+	org.osgi.framework.system.packages.extra=jdk.internal.access,\
+	equinox.osgi.unnamed.modules=true
 
 -runblacklist: \
 	bnd.identity;id='jakarta.ws.rs-api',\
@@ -155,6 +166,7 @@ feature.openhab-model-runtime-all: \
 -runvm: \
 	-Djdk.util.zip.disableZip64ExtraFieldValidation=true,\
 	-Djava.io.tmpdir=C:\\temp\\EclipseOpenHAB,\
+	-Dpolyglotimpl.DisableClassPathIsolation=true,\
 	--add-opens=java.base/java.io=ALL-UNNAMED,\
 	--add-opens=java.base/java.lang=ALL-UNNAMED,\
 	--add-opens=java.base/java.lang.reflect=ALL-UNNAMED,\
@@ -165,7 +177,29 @@ feature.openhab-model-runtime-all: \
 	--add-opens=java.base/java.util=ALL-UNNAMED,\
 	--add-opens=java.desktop/java.awt.font=ALL-UNNAMED,\
 	--add-opens=java.naming/javax.naming.spi=ALL-UNNAMED,\
-	--add-opens=java.rmi/sun.rmi.transport.tcp=ALL-UNNAMED
+	--add-opens=java.rmi/sun.rmi.transport.tcp=ALL-UNNAMED,\
+	--add-exports=java.base/jdk.internal.access=ALL-UNNAMED,\
+	--add-opens=java.base/jdk.internal.access=ALL-UNNAMED,\
+	--add-opens=java.base/sun.misc=ALL-UNNAMED,\
+	--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED,\
+	--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED,\
+	--add-opens=jdk.unsupported/sun.misc=ALL-UNNAMED
+
+-runbootdelegation: \
+	jdk.internal.access.*,\
+	jdk.internal.access
+
+-runsystempackages: \
+	jdk.internal.access,\
+	org.graalvm.polyglot,\
+	org.graalvm.polyglot.proxy,\
+	org.graalvm.polyglot.io,\
+	org.graalvm.polyglot.management,\
+	sun.misc;from="jdk.unsupported"
+
+-runsystemcapabilities: \
+	osgi.serviceloader;osgi.serviceloader="org.graalvm.polyglot.impl.LanguageProvider",\
+	osgi.serviceloader;osgi.serviceloader="org.graalvm.polyglot.spi.PolyglotEngineProvider"
 
 #
 # done
@@ -392,5 +426,32 @@ feature.openhab-model-runtime-all: \
 	jul.to.slf4j;version='[2.0.17,2.0.18)',\
 	groovy;version='[4.0.31,4.0.32)',\
 	groovy-jsr223;version='[4.0.31,4.0.32)',\
-	org.openhab.automation.groovyscripting;version='[5.2.0,5.2.1)'
+	org.openhab.automation.groovyscripting;version='[5.2.0,5.2.1)',\
+	org.graalvm.polyglot.polyglot;version='[25.0.1,25.0.2)',\
+	org.graalvm.regex.regex;version='[25.0.1,25.0.2)',\
+	org.graalvm.sdk.collections;version='[25.0.1,25.0.2)',\
+	org.graalvm.sdk.jniutils;version='[25.0.1,25.0.2)',\
+	org.graalvm.sdk.nativeimage;version='[25.0.1,25.0.2)',\
+	org.graalvm.sdk.word;version='[25.0.1,25.0.2)',\
+	org.graalvm.shadowed.icu4j;version='[25.0.1,25.0.2)',\
+	org.graalvm.shadowed.json;version='[25.0.1,25.0.2)',\
+	org.graalvm.shadowed.xz;version='[25.0.1,25.0.2)',\
+	org.graalvm.tools.chromeinspector-tool;version='[25.0.1,25.0.2)',\
+	org.graalvm.tools.profiler-tool;version='[25.0.1,25.0.2)',\
+	org.graalvm.truffle.truffle-api;version='[25.0.1,25.0.2)',\
+	org.graalvm.truffle.truffle-compiler;version='[25.0.1,25.0.2)',\
+	org.graalvm.truffle.truffle-runtime;version='[25.0.1,25.0.2)',\
+	bcpkix;version='[1.84.0,1.84.1)',\
+	bcutil;version='[1.84.0,1.84.1)',\
+	org.graalvm.llvm.llvm-api;version='[25.0.1,25.0.2)',\
+	org.graalvm.python.python-language;version='[25.0.1,25.0.2)',\
+	org.graalvm.python.python-resources;version='[25.0.1,25.0.2)',\
+	org.graalvm.truffle.truffle-nfi;version='[25.0.1,25.0.2)',\
+	org.graalvm.truffle.truffle-nfi-libffi;version='[25.0.1,25.0.2)',\
+	org.openhab.automation.pythonscripting;version='[5.2.0,5.2.1)',\
+	com.google.protobuf;version='[3.25.5,3.25.6)',\
+	de.sfuhrm.chromecast-java-api-v2;version='[0.12.3,0.12.4)',\
+	org.graalvm.js.js-language;version='[25.0.1,25.0.2)',\
+	org.graalvm.js.js-scriptengine;version='[25.0.1,25.0.2)',\
+	org.openhab.automation.jsscripting;version='[5.2.0,5.2.1)'
 -resolve: manual
